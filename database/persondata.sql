@@ -7,10 +7,13 @@
 -- Server-Version: 10.4.11-MariaDB
 -- PHP-Version: 7.4.2
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
+SET SQL_MODE
+= "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT
+= 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone
+= "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -21,7 +24,10 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `persondata`
 --
-CREATE DATABASE IF NOT EXISTS `persondata` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE
+IF NOT EXISTS `persondata` DEFAULT CHARACTER
+SET utf8mb4
+COLLATE utf8mb4_general_ci;
 USE `persondata`;
 
 -- --------------------------------------------------------
@@ -30,12 +36,18 @@ USE `persondata`;
 -- Tabellenstruktur für Tabelle `companydata`
 --
 
-CREATE TABLE `companydata` (
-  `ID_Companydata` int(11) NOT NULL,
-  `Companyname` varchar(50) NOT NULL,
-  `Departement` varchar(50) NOT NULL,
-  `Jobtitle` varchar(50) NOT NULL,
-  `Jobdescription` varchar(255) DEFAULT NULL
+CREATE TABLE `companydata`
+(
+  `ID_Companydata` int
+(11) NOT NULL,
+  `Companyname` varchar
+(50) NOT NULL,
+  `Departement` varchar
+(50) NOT NULL,
+  `Jobtitle` varchar
+(50) NOT NULL,
+  `Jobdescription` varchar
+(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -44,15 +56,23 @@ CREATE TABLE `companydata` (
 -- Tabellenstruktur für Tabelle `personaldata`
 --
 
-CREATE TABLE `personaldata` (
-  `ID_Personaldata` int(11) NOT NULL,
-  `Firstname` varchar(50) NOT NULL,
-  `Lastname` varchar(50) NOT NULL,
+CREATE TABLE `personaldata`
+(
+  `ID_Personaldata` int
+(11) NOT NULL,
+  `Firstname` varchar
+(50) NOT NULL,
+  `Lastname` varchar
+(50) NOT NULL,
   `Birthday` date NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `AHV` varchar(16) NOT NULL,
-  `Personalnumber` varchar(16) NOT NULL,
-  `Phonenumber` int(11) DEFAULT NULL
+  `Email` varchar
+(50) DEFAULT NULL,
+  `AHV` varchar
+(16) NOT NULL,
+  `Personalnumber` varchar
+(16) NOT NULL,
+  `Phonenumber` int
+(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -63,15 +83,19 @@ CREATE TABLE `personaldata` (
 -- Indizes für die Tabelle `companydata`
 --
 ALTER TABLE `companydata`
-  ADD PRIMARY KEY (`ID_Companydata`),
-  ADD UNIQUE KEY `Departement` (`Departement`);
+ADD PRIMARY KEY
+(`ID_Companydata`),
+ADD UNIQUE KEY `Departement`
+(`Departement`);
 
 --
 -- Indizes für die Tabelle `personaldata`
 --
 ALTER TABLE `personaldata`
-  ADD PRIMARY KEY (`ID_Personaldata`),
-  ADD UNIQUE KEY `Personalnumber` (`Personalnumber`);
+ADD PRIMARY KEY
+(`ID_Personaldata`),
+ADD UNIQUE KEY `Personalnumber`
+(`Personalnumber`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
