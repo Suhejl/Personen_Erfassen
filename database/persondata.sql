@@ -58,9 +58,9 @@ CREATE TABLE `personaldata` (
   `Lastname` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `AHV` varchar(16) NOT NULL,
-  `Personalnumber` varchar(16) NOT NULL,
-  `Phonenumber` int(11) DEFAULT NULL,
+  `AHV` varchar(50) NOT NULL,
+  `Personalnumber` int(11) NOT NULL,
+  `Phonenumber` varchar(50) DEFAULT NULL,
   `ID_Companydata` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
