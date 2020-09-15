@@ -57,7 +57,7 @@ CREATE TABLE `personaldata` (
   `Firstname` varchar(50) NOT NULL,
   `Lastname` varchar(50) NOT NULL,
   `Birthday` date NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
+  `Email` varchar(50) NOT NULL,
   `AHV` varchar(16) NOT NULL,
   `Personalnumber` varchar(16) NOT NULL,
   `Phonenumber` int(11) DEFAULT NULL,
