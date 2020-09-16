@@ -1,83 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
-    <!-- CSS for this site -->
-    <link rel="stylesheet" href="css/site.css">
-    
-    <!-- JS for Index -->
-    <script src="js/index.js"></script>
-
-    <title>Personal Data Record</title>
+    <title>Home</title>
 </head>
-
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
-                <form class="form" action="controller/employee.php" method="POST">
-                    <div class="form__title">Person</div>
-                    <div class="form__item">
-                        <label for="lastname" class="form__label">Nachname</label>
-                        <input type="text" class="form__input" name="lastname" id="lastname" placeholder="Vorname">
-                        <span class="form__error"></span>
-                    </div>
-                    <div class="form__item">
-                        <label for="firstname" class="form__label">Vorname</label>
-                        <input type="text" class="form__input" name="firstname" id="firstname" placeholder="Nachname">
-                        <span class="form__error"></span>
-                    </div>
-                    <div class="form__item">
-                        <label for="birthday" class="form__label">Geburtstag</label>
-                        <input type="date" class="form__input" name="birthday" id="birthday" placeholder="Geburtstag">
-                        <span class="form__error"></span>
-                    </div>
-                    <div class="form__item">
-                        <label for="email" class="form__label">E-Mail</label>
-                        <input type="text" class="form__input" name="email" id="email" placeholder="E-Mail">
-                        <span class="form__error"></span>
-                    </div>
-                    <div class="form__item">
-                        <label for="ahvNr" class="form__label">AHV Nummer</label>
-                        <input type="text" class="form__input" name="ahvNr" id="ahvNr" placeholder="AHV Nummer">
-                        <span class="form__error"></span>
-                    </div>
-                    <div class="form__item">
-                        <label for="personalNr" class="form__label">Personal Nummer</label>
-                        <input type="text" class="form__input" name="personalNr" id="personalNr" placeholder="Personal Nummer">
-                        <span class="form__error"></span>
-                    </div>
-                    <div class="form__item">
-                        <label for="telefon" class="form__label">Telefon</label>
-                        <input type="text" class="form__input" name="telefon" id="telefon" placeholder="Telefon">
-                        <span class="form__error"></span>
-                    </div>
-                    <!-- For company description -->
-                    <!-- <div class="form__item">
-                        <label for="description" class="form__label">Beschreibung</label>
-                        <textarea class="form__input" name="description" id="description" placeholder="Schreibe eine Beschreibung zu dieser Firma"></textarea>
-                        <span class="form__error"></span>
-                    </div> -->
-                    <div class="form__item">
-                        <button class="form__btn" type="submit">Erfassen</button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-sm-3"></div>
-        </div>
-    </div>
+    <table id="personalDataTable">
+        <tr>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>E-Mail</th>
+            <th>Geburtstag</th>
+            <th>AHV</th>
+            <th>Personalnumber</th>
+            <th>Telefonnummer</th>
+            <th>Firmenname</th>
+            <th>Abteilung</th>
+            <th>Berufsbezeichnung</th>
+            <th>Beschreibung</th>
+        </tr>
+    </table>
 </body>
-
 </html>

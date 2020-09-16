@@ -1,20 +1,26 @@
-document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.form__input').forEach(function(input){
-        input.addEventListener('input', function(){
-            this.className = this.className.replace(/form__input--error ?/, '') // form__input--error class is removed (replaced with nothing) with Regex. " ?" means, that the whitespace at the end is optional.
-        });
+function loadPersonalData(){
+    var request = new XMLHttpRequest();
+    request.open('GET', '../controller/personaldata.php', true);
 
-        if(input.id === 'email'){
-            input.addEventListener('change', function(){
+    request.onload = function(){
+        var json = JSON.parse(this.response);
+        let tableData = "";
 
-                var regex = /\S+@\S+\.\S+/;
-                let isValid = regex.test(this.value);                
-                console.log(isValid);
-                
-                if(!isValid){
-                    input.classList.add('form__input--error');
-                }
-            })
+        for (var personaldata of json) {
+            tableData += 
+            `<tr>
+            <td>${personaldata.Firstname}</td>
+            <td>${personaldata.Lastname}</td>
+            <td>${personaldata.Email}</td>
+            <td>${personaldata.Birthday}</td>
+            <td>${personaldata.AHV}</td>
+            <td>${personaldata.Personalnumber}</td>
+            <td>${personaldata.Phonenumber}</td>
+            <td>${personaldata.Companyname}</td>
+            <td>${personaldata.Department}</td>
+            <td>${personaldata.Jobtitle}</td>
+            <td>${personaldata.Jobdescription}</td>
+            </tr>`;
         }
-    });
-});
+    }
+}
