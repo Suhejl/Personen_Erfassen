@@ -1,5 +1,5 @@
 <?php
-
+//test
 function isset_properties($datas)
 {
     for ($i = 0; $i < count($datas); $i++) {
