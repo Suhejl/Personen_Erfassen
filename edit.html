@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <!-- CSS for this site -->
+    <link rel="stylesheet" href="css/site.css">
+    
+    <!-- JS for Index -->
+    <script src="js/edit.js"></script>
+
+    <title>Personal Data Bearbeiten</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="record.html">Personen Erfassen <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <form class="form" action="controller/personaldata.php" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="id" id="id">
+                    <div class="form__title">Person</div>
+                    <div class="form__item">
+                        <label for="lastname" class="form__label">Nachname</label>
+                        <input type="text" class="form__input" name="lastname" id="lastname" placeholder="Vorname">
+                        <span class="form__error"></span>
+                    </div>
+                    <div class="form__item">
+                        <label for="firstname" class="form__label">Vorname</label>
+                        <input type="text" class="form__input" name="firstname" id="firstname" placeholder="Nachname">
+                        <span class="form__error"></span>
+                    </div>
+                    <div class="form__item">
+                        <label for="birthday" class="form__label">Geburtstag</label>
+                        <input type="date" class="form__input" name="birthday" id="birthday" placeholder="Geburtstag">
+                        <span class="form__error"></span>
+                    </div>
+                    <div class="form__item">
+                        <label for="email" class="form__label">E-Mail</label>
+                        <input type="text" class="form__input" name="email" id="email" placeholder="E-Mail">
+                        <span class="form__error"></span>
+                    </div>
+                    <div class="form__item">
+                        <label for="ahvNr" class="form__label">AHV Nummer</label>
+                        <input type="text" class="form__input" name="ahvNr" id="ahvNr" placeholder="AHV Nummer">
+                        <span class="form__error"></span>
+                    </div>
+                    <div class="form__item">
+                        <label for="personalNr" class="form__label">Personal Nummer</label>
+                        <input type="text" class="form__input" name="personalNr" id="personalNr" placeholder="Personal Nummer">
+                        <span class="form__error"></span>
+                    </div>
+                    <div class="form__item">
+                        <label for="telefon" class="form__label">Telefon</label>
+                        <input type="text" class="form__input" name="telefon" id="telefon" placeholder="Telefon">
+                        <span class="form__error"></span>
+                    </div>
+                    <!-- For company description -->
+                    <div class="form__item">
+                        <label for="description" class="form__label">Beschreibung</label>
+                        <textarea class="form__input" name="description" id="description" placeholder="Schreibe eine Beschreibung zu dieser Firma"></textarea>
+                        <span class="form__error"></span>
+                    </div>
+                    <div class="form__item">
+                        <button class="form__btn" type="submit">Bearbeiten</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+</body>
+
+</html>
