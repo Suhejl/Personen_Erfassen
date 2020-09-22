@@ -29,14 +29,18 @@ BEGIN
                             `Personalnumber`,
                             `Phonenumber`,
                             `ID_Companydata`);
+		END IF;
 
-      ELSEIF `StatementType` = 'Select' THEN
+      IF `StatementType` = 'Select' THEN
             SELECT * FROM personaldata JOIN companydata ON ID_Companydata = Companydata_ID;
+        END IF;
+
+	  IF `StatementType` = 'SelectById' THEN
+            SELECT * FROM personaldata JOIN companydata ON ID_Companydata = Companydata_ID WHERE Personaldata_ID=`Personaldata_ID`;
+		END IF;
+
             
-	  ELSEIF `StatementType` = 'SelectById' THEN
-            SELECT * FROM personaldata WHERE Personaldata_ID=`Personaldata_ID`;
-            
-	   ELSEIF `StatementType` = 'Update' THEN
+	   IF `StatementType` = 'Update' THEN
 				UPDATE personaldata  
 				SET    Firstname=`Firstname`,  
 					   Lastname=`Lastname`,  
@@ -46,8 +50,9 @@ BEGIN
                        Personalnumber=`Personalnumber`,
                        Phonenumber=`Phonenumber`
 				WHERE  Personaldata_ID=`Personaldata_ID`;
+		END IF;
                 
-		  ELSEIF `StatementType` = 'Delete' THEN
+		  IF `StatementType` = 'Delete' THEN
 				DELETE FROM personaldata  
 				WHERE Personaldata_ID = `Personaldata_ID`;
 		END IF;
