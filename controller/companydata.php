@@ -40,4 +40,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $sql_update_data = "SELECT Companydata_ID, Companyname, Departement, Jobtitle, Jobdescription from companydata";
+
+    $ppStmt = $dbconn->prepare($sql_update_data);
+
+    $ppStmt->execute();
+
+    while ($data = $ppStmt->fetch(PDO::FETCH_ASSOC)) {
+        $personaldatas[] = $data;
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($personaldatas);
+}
+
+
+
 ?>

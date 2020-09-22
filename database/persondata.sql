@@ -36,12 +36,13 @@ USE `persondata`;
 -- Tabellenstruktur für Tabelle `companydata`
 --
 
-CREATE TABLE `companydata` (
+CREATE TABLE `companydatatest` (
   `Companydata_ID` int(11) NOT NULL,
   `Companyname` varchar(50) NOT NULL,
   `Departement` varchar(50) NOT NULL,
   `Jobtitle` varchar(50) NOT NULL,
-  `Jobdescription` varchar(255) DEFAULT NULL
+  `Jobdescription` varchar(255) DEFAULT NULL,
+  UNIQUE KEY(`Companyname`, `Departement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
