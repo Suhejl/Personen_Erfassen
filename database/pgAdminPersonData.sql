@@ -112,7 +112,7 @@ DELETE FROM personaldata WHERE Personaldata_ID = 3;*/
     
 -- Stored Procedures
 
-CREATE PROCEDURE Stored_Procedure_SELECT_INSERT_UPDATE_DELETE (IN ID INT,  
+CREATE PROCEDURE Stored_Procedure_SEeweweweLECT_INSERT_UPDATE_DELETE (IN ID INT,  
                                           IN firstname VARCHAR(50),  
                                           IN lastname VARCHAR(50),  
                                           IN birthday DATE, 
@@ -145,7 +145,8 @@ BEGIN
               id_Companydata);
 
 	  ELSEIF Action = 'SELECTBYID' THEN
-            SELECT * FROM personaldata WHERE Personaldata_ID = ID;
+            SELECT p.Personaldata_ID as "Personaldata_ID", p.Firstname as "Firstname", p.Lastname as "Lastname", p.Birthday as "Birthday", p.Email as "Email", p.AHV as "AHV", p.Personalnumber as "Personalnumber", p.Phonenumber as "Phonenumber",
+			 p.ID_Companydata as "ID_Companydata", c.Companyname as "Companyname", c.Departement as "Departement", c.Jobtitle as "Jobtitle", c.Jobdescription as "Jobdescription" FROM personaldata p JOIN companydata c ON p.ID_Companydata = c.Companydata_ID WHERE Personaldata_ID = ID;
 
       ELSEIF Action = 'SELECT' THEN
             SELECT p.Personaldata_ID as "Personaldata_ID", p.Firstname as "Firstname", p.Lastname as "Lastname", p.Birthday as "Birthday", p.Email as "Email", p.AHV as "AHV", p.Personalnumber as "Personalnumber", p.Phonenumber as "Phonenumber",
