@@ -1,6 +1,6 @@
 <?php
 
-$host = "odbc:PostgreSQL30";
+$host = "odbc:PostgreSQL35W";
 $user = "postgres";
 $password = "123456";
 try {

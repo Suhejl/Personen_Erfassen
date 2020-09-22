@@ -165,16 +165,8 @@ DELETE FROM personaldata WHERE Personaldata_ID = 3;
 -- Procedures
 
 DELIMITER $$
-CREATE PROCEDURE `Stored_Procedure_SELECT_INSERT_UPDATE_DELETE` (IN ID INT,  
-                                          IN firstname VARCHAR(50),  
-                                          IN lastname VARCHAR(50),  
-                                          IN birthday DATE, 
-                                          IN email VARCHAR(50),
-                                          IN ahv VARCHAR(50),
-                                          IN personalnumber INT,
-										  IN phonenumber VARCHAR(50),
-                                          IN id_Companydata INT,
-                                          IN Action VARCHAR(50))										
+CREATE PROCEDURE `Stored_Procedure_SELECT_INSERT_UPDATE_DELETE` (IN ID INT, IN firstname VARCHAR(50), IN lastname VARCHAR(50), IN birthday DATE, 
+IN email VARCHAR(50), IN ahv VARCHAR(50), IN personalnumber INT, IN phonenumber VARCHAR(50), IN id_Companydata INT, IN Action VARCHAR(50))										
 BEGIN
 		IF Action = 'INSERT' THEN
 				INSERT INTO personaldata  

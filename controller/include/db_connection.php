@@ -1,5 +1,16 @@
 <?php  
-   $user = "root";
+
+        $host="odbc:MYSQL_PERSONALDATA";
+        $user="root";
+        $password="";
+        try{
+            $dbconn=new PDO($host, $user, $password);
+            //$dbconn = new PDO("mysql:host=localhost:3306;dbname=persondata", "root", "");
+        }catch (PDOException $e) {
+            echo "Error!: " . $e->getMessage() . "<br/>";
+         }
+
+   /*$user = "root";
    $pw = "";
   
 //connect to database
@@ -17,5 +28,5 @@ $dbconn = new PDO("mysql:host=localhost:3306;dbname=persondata", "root", "");
 // }catch(PDOException $e){
 //    print "Error!: " . $e->getMessage() . "<br/>";
 //    die();
-// }
+// }*/
 ?>
