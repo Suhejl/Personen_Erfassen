@@ -51,7 +51,7 @@ SELECT * FROM personaldata_audit;
 
 /* Test */
 INSERT INTO personaldata(Firstname, Lastname, Birthday, Email, AHV, Personalnumber, Phonenumber, ID_Companydata) 
-VALUES('Suhejl', 'Asani', NOW(), 'suhejl.asani.17@gmail.com', 'ASDFGHJ', 'fsd', 123, 1);
+VALUES('Suhejl', 'Asani', NOW(), 'suhejl.asani.17@gmail.com', 'ASDFGHJ', 123, 'fsd', 1);
 
 UPDATE personaldata SET Firstname = "Culi" WHERE Personaldata_ID = 3;
 
