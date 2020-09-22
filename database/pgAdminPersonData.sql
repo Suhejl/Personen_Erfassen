@@ -11,7 +11,7 @@ CREATE TABLE public.companydata
     "Jobtitle" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     "Jobdescription" character varying(255) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT companydata_pkey PRIMARY KEY ("Companydata_ID"),
-    CONSTRAINT "Departement" UNIQUE ("Departement")
+    UNIQUE ("Companyname", "Departement")
 )
 
 TABLESPACE pg_default;
