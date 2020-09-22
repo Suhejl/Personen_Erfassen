@@ -39,7 +39,9 @@ CREATE TABLE `companydata` (
   `Companyname` varchar(50) NOT NULL,
   `Departement` varchar(50) NOT NULL,
   `Jobtitle` varchar(50) NOT NULL,
-  `Jobdescription` varchar(255) DEFAULT NULL
+  `Jobdescription` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Companydata_ID`),
+  UNIQUE KEY(`Companyname`, `Departement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -65,15 +67,17 @@ CREATE TABLE `personaldata` (
   `AHV` varchar(50) NOT NULL,
   `Personalnumber` int(11) NOT NULL,
   `Phonenumber` varchar(50) DEFAULT NULL,
-  `ID_Companydata` int(11) DEFAULT NULL
+  `ID_Companydata` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Personaldata_ID`),
+  UNIQUE KEY `Personalnumber` (`Personalnumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /* Create AUDIT Table */
 
-CREATE TABLE personaldata_audit(
-	id INT AUTO_INCREMENT,
-    personaldata_id INT NOT NULL,
-    changedate DATETIME NOT NULL,
+CREATE TABLE `personaldata_audit` (
+	  `id` INT AUTO_INCREMENT,
+    `personaldata_id` INT NOT NULL,
+    `changedate` DATETIME NOT NULL,
     action VARCHAR(50) NOT NULL,
     PRIMARY KEY(id)
 );
@@ -85,25 +89,6 @@ CREATE TABLE personaldata_audit(
 INSERT INTO `personaldata` (`Personaldata_ID`, `Firstname`, `Lastname`, `Birthday`, `Email`, `AHV`, `Personalnumber`, `Phonenumber`, `ID_Companydata`) VALUES
 (1, 'Samuel', 'Sättler', '2003-01-21', 'samuel.saettler@six-group.com', '123.4567.7891.12', '653454', 797542031, 1),
 (2, 'Suhejl', 'Asani', '2003-04-22', NULL, '123.6543.9678.54', '5745634', NULL, 5);
-
---
--- Indizes der exportierten Tabellen
---
-
---
--- Indizes für die Tabelle `companydata`
---
-ALTER TABLE `companydata`
-  ADD PRIMARY KEY (`Companydata_ID`),
-  ADD UNIQUE KEY `Departement` (`Departement`);
-
---
--- Indizes für die Tabelle `personaldata`
---
-ALTER TABLE `personaldata`
-  ADD PRIMARY KEY (`Personaldata_ID`),
-  ADD UNIQUE KEY `Personalnumber` (`Personalnumber`),
-  ADD KEY `ID_Companydata` (`ID_Companydata`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -197,19 +182,19 @@ BEGIN
 							 Lastname,  
 							 Birthday,  
 							 Email,
-                             AHV,
-                             Personalnumber,
-                            Phonenumber,
-                             ID_Companydata)
+               AHV,
+               Personalnumber,
+               Phonenumber,
+               ID_Companydata)
 							 
-				VALUES     (firstname,  
+				VALUES (firstname,  
 							lastname,  
 							birthday,  
 							email,
-                            ahv,
-                            personalnumber,
-                           	phonenumber,
-                            id_Companydata);
+              ahv,
+              personalnumber,
+              phonenumber,
+              id_Companydata);
 
 	  ELSEIF Action = 'SELECTBYID' THEN
             SELECT * FROM personaldata WHERE Personaldata_ID = ID;

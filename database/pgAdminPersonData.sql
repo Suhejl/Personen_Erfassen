@@ -1,19 +1,4 @@
--- Database: postgres
 
--- DROP DATABASE postgres;
-
-CREATE DATABASE postgres
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'German_Switzerland.1252'
-    LC_CTYPE = 'German_Switzerland.1252'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
-
-COMMENT ON DATABASE postgres
-    IS 'default administrative connection database';
-    
 -- Table: public.companydata
 
 -- DROP TABLE public.companydata;
@@ -45,7 +30,7 @@ CREATE TABLE public.personaldata
     "Lastname" character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
     "Birthday" date[] NOT NULL,
     "Email" character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
-    "AVH" character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
+    "AHV" character varying(50)[] COLLATE pg_catalog."default" NOT NULL,
     "Personalnumber" integer NOT NULL,
     "Phonenumber" character varying(50) COLLATE pg_catalog."default" NOT NULL,
     "ID_Companydata" integer NOT NULL,
@@ -62,3 +47,124 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.personaldata
     OWNER to postgres;
+    
+CREATE TABLE public.personaldata_audit (
+	"id" INT GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    "Personaldata_id" INT NOT NULL,
+    "changedate" DATE NOT NULL,
+    action VARCHAR(50) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+-- Functions
+
+CREATE FUNCTION trigger_insert()
+    RETURNS trigger
+    LANGUAGE plpgsql
+AS $FUNCTION$
+BEGIN
+    INSERT INTO log (personaldata_id, changedate, action)
+    VALUES (NEW.Personaldata_ID, current_timestamp, 'insert');
+    RETURN new;
+END;
+$FUNCTION$;
+
+CREATE FUNCTION trigger_update()
+    RETURNS trigger
+    LANGUAGE plpgsql
+AS $FUNCTION$
+BEGIN
+    INSERT INTO log (personaldata_id, changedate, action)
+    VALUES (OLD.Personaldata_ID, current_timestamp, 'update');
+    RETURN new;
+END;
+$FUNCTION$;
+
+CREATE FUNCTION trigger_delete()
+    RETURNS trigger
+    LANGUAGE plpgsql
+AS $FUNCTION$
+BEGIN
+    INSERT INTO log (personaldata_id, changedate, action)
+    VALUES (OLD.Personaldata_ID, current_timestamp, 'delete');
+    RETURN new;
+END;
+$FUNCTION$;
+
+-- Triggers
+
+CREATE TRIGGER after_personaldata_insert
+	AFTER INSERT ON personaldata
+	FOR EACH ROW EXECUTE FUNCTION trigger_insert();
+    
+    CREATE TRIGGER before_personaldata_update
+	BEFORE UPDATE ON personaldata
+	FOR EACH ROW EXECUTE FUNCTION trigger_update();
+    
+    CREATE TRIGGER before_personaldata_delete
+	BEFORE DELETE ON personaldata
+	FOR EACH ROW EXECUTE FUNCTION trigger_delete();
+    
+/*INSERT INTO personaldata("Firstname", "Lastname", "Birthday", "Email", "AHV", "Personalnumber", "Phonenumber", "ID_Companydata") 
+VALUES("Suhejl", "Asani", CURRENT_TIMESTAMP, "suhejl.asani.17@gmail.com", "ASDFGHJ", 123, fsd, 1);
+UPDATE personaldata SET Firstname = "Culi" WHERE Personaldata_ID = 3;
+DELETE FROM personaldata WHERE Personaldata_ID = 3;*/
+    
+-- Stored Procedures
+
+CREATE PROCEDURE Stored_Procedure_SELECT_INSERT_UPDATE_DELETE (IN ID INT,  
+                                          IN firstname VARCHAR(50),  
+                                          IN lastname VARCHAR(50),  
+                                          IN birthday DATE, 
+                                          IN email VARCHAR(50),
+                                          IN ahv VARCHAR(50),
+                                          IN personalnumber INT,
+										  IN phonenumber VARCHAR(50),
+                                          IN id_Companydata INT,
+                                          IN Action VARCHAR(50))
+AS $$
+BEGIN
+		IF Action = 'INSERT' THEN
+				INSERT INTO personaldata  
+							(Firstname,  
+							 Lastname,  
+							 Birthday,  
+							 Email,
+               AHV,
+               Personalnumber,
+               Phonenumber,
+               ID_Companydata)
+							 
+				VALUES (firstname,  
+							lastname,  
+							birthday,  
+							email,
+              ahv,
+              personalnumber,
+              phonenumber,
+              id_Companydata);
+
+	  ELSEIF Action = 'SELECTBYID' THEN
+            SELECT * FROM personaldata WHERE Personaldata_ID = ID;
+
+      ELSEIF Action = 'SELECT' THEN
+            SELECT p.Personaldata_ID as "Personaldata_ID", p.Firstname as "Firstname", p.Lastname as "Lastname", p.Birthday as "Birthday", p.Email as "Email", p.AHV as "AHV", p.Personalnumber as "Personalnumber", p.Phonenumber as "Phonenumber",
+			 p.ID_Companydata as "ID_Companydata", c.Companyname as "Companyname", c.Departement as "Departement", c.Jobtitle as "Jobtitle", c.Jobdescription as "Jobdescription" FROM personaldata p JOIN companydata c ON p.ID_Companydata = c.Companydata_ID;
+            
+	   ELSEIF Action = 'UPDATE' THEN
+				UPDATE personaldata  
+				SET    Firstname=firstname,  
+					   Lastname=lastname,  
+					   Birthday=birthday,  
+					   Email=email,
+                       AHV=ahv,
+                       Personalnumber=personalnumber,
+                       Phonenumber=phonenumber
+				WHERE  Personaldata_ID=ID;
+                
+		  ELSEIF Action = 'DELETE' THEN
+				DELETE FROM personaldata  
+				WHERE Personaldata_ID = ID;
+		END IF;
+END;
+$$ LANGUAGE plpgsql;
