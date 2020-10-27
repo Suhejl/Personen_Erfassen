@@ -1,24 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Data Record</title>
-</head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-<body>
-    <form action="controller/employee.php" method="POST">
-        <span>Nachname: </span>
-        <input type="text" name="lastname">
-        <br> 
-        <br> 
-        <span>Vorname:h </span>
-        <input type="text" name="firstname">
-        <br> 
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/site.css" />
+    <script src="js/index.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="record_person.html">Personen Erfassen</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="record_company.html">Firma Erfassen</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 header">
+          <div class="font-weight-bold">Personen Erfassen</div>
+        </div>
+      </div>
+      <div class="row table-margin">
+        <div class="col-sm-1">
+          <table id="personalDataTable" class="personaldata-table">
+            <thead>
+              <tr>
+                <th class="font-weight-bold">Vorname</th>
+                <th>Nachname</th>
+                <th>E-Mail</th>
+                <th>Geburtstag</th>
+                <th>AHV</th>
+                <th>Personalnumber</th>
+                <th>Telefonnummer</th>
+                <th>Firmenname</th>
+                <th>Abteilung</th>
+                <th>Berufsbezeichnung</th>
+                <th>Beschreibung</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="personalDataTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
+    <div id="deleteConfirmation" class="modal">
+      <div id="modalDIV" class="modal-content">
+        <span class="close">&times;</span>
+        <p>Sind sie sich sicher, diesen Datensatz zu löschen?</p>
+      </div>
+    </div>
+  </body>
 </html>
